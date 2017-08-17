@@ -1,0 +1,60 @@
+<div class="container">
+
+  <div class="jumbotron">
+    <h1 class="text-center">Burger ORM App</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="burgers">
+          <h3>Uneaten:</h3>
+          <ul class="list-group clearfix">
+            {{#each burgers}}
+            {{#unless this.devoured}}
+            <li class="list-group-item clearfix">
+
+              <p class="pull-left">{{this.burger_name}}</p>
+
+              <form action="/{{this.id}}?_method=PUT" method="post" class="pull-right">
+                <button type="submit" name="id" class="btn btn-primary btn-sm pull-right">DEVOUR</button>
+              </form>
+
+            </li>
+            {{/unless}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="burgers-eaten">
+          <h3>Eaten:</h3>
+          <ul>
+            {{#each burgers}}
+            {{#if this.devoured}}
+            <li>{{this.burger_name}}</li>
+            {{/if}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <nav class="navbar navbar-inverse bg-dark">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 ">
+        <form action="/" method="post">
+          <div class="form-group">
+            <label for="burger_name" class="label" class="form-control">Enter the name of a new Burger:</label>
+          </div>
+          <div class="form-group">
+            <input type="text" name="burger_name" class="form-control">
+          </div>
+          <div class="form-group">
+            <button type="submit" name="addButton" class="btn btn-success form-control">ADD</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+</div>
